@@ -1,0 +1,111 @@
+<?php
+// Shared content loader for website pages
+// File path for content
+$settings_file = 'dashboard_content.json';
+
+// Default content structure (same as in editor.php)
+$default_content = [
+    'banner_text' => 'Welcome to CRI TRAVELS',
+    'slider_images' => [
+        'image-1.jpeg',
+        'image-2.jpeg',
+        'image-3.jpeg',
+        'image-4.jpeg'
+    ],
+    'events' => [
+        [
+            'date' => 'January 3-5, 2026',
+            'title' => 'Ooty Hill Station Weekend Tour',
+            'details' => 'Experience the beauty of the "Queen of Hill Stations" with our 3-day weekend package. Visit botanical gardens, Ooty Lake, tea estates, and enjoy the scenic Nilgiri Mountain Railway.<br><strong>Includes:</strong> Coach bus transportation, accommodation, breakfast, and guided tours.',
+            'price' => 'Starting from ₹4,500 per person'
+        ],
+        [
+            'date' => 'February 5-7, 2026',
+            'title' => "Kodaikanal Nature Retreat",
+            'details' => "Explore the misty mountains of Kodaikanal with our special group package. Visit Coaker's Walk, Bryant Park, Pillar Rocks, and the serene Kodai Lake.<br><strong>Includes:</strong> AC coach bus, hotel stay, meals, and sightseeing tours.",
+            'price' => 'Starting from ₹5,200 per person'
+        ],
+        [
+            'date' => 'February 10-15, 2026',
+            'title' => 'Rameshwaram & Dhanushkodi Pilgrimage Tour',
+            'details' => 'Spiritual journey to the sacred Rameshwaram temple and the ghost town of Dhanushkodi. Experience the confluence of Bay of Bengal and Indian Ocean.<br><strong>Includes:</strong> Coach bus transport, accommodation, and temple visits with guide.',
+            'price' => 'Starting from ₹3,800 per person'
+        ]
+    ],
+    'services' => [
+        [
+            'title' => 'Three-Wheeler Auto',
+            'description' => 'Perfect for city rides and quick trips. Experienced auto drivers for your safe travel.',
+            'image' => 'img\\auto.jpeg'
+        ],
+        [
+            'title' => 'Maxi Cab',
+            'description' => 'Spacious and comfortable, ideal for group and family travel. AC/non-AC options available.',
+            'image' => 'img\\m.jpeg'
+        ],
+        [
+            'title' => 'Car Rental',
+            'description' => 'Choose from our fleet of well-maintained cars for personal or business travel within Tamil Nadu.',
+            'image' => 'img\\Chevrolet-Tavera.jpeg'
+        ],
+        [
+            'title' => 'Coach Bus',
+            'description' => 'comfortable travel with A/c coach buses For College IV Trips friends trips family trips All over tamilnadu',
+            'image' => 'img\\coach.jpg'
+        ]
+    ],
+    'index_page' => [
+        'hero_title' => 'Travel Across Tamil Nadu<br>with Ease & Comfort',
+        'hero_description' => 'Book autos, maxi cabs, cars, or coach buses for any occasion.<br>Affordable, reliable, and available 24/7.',
+        'highlights' => [
+            [
+                'title' => 'Autos',
+                'description' => 'Quick city rides by professional drivers. Clean & sanitized autos for your comfort.',
+                'image' => 'img/auto.jpeg'
+            ],
+            [
+                'title' => 'Maxi Cabs',
+                'description' => 'Spacious cabs for families & groups.<br>AC/Non-AC options available.',
+                'image' => 'img/m.jpeg'
+            ],
+            [
+                'title' => 'Car Rentals',
+                'description' => 'Choose from well-maintained cars for all travels—business or personal.',
+                'image' => 'img/Chevrolet-Tavera.jpeg'
+            ],
+            [
+                'title' => 'Coach Buses',
+                'description' => 'Comfortable journeys for college, family, or friends\' trips all over Tamil Nadu.',
+                'image' => 'img/coach.jpg'
+            ]
+        ],
+        'why_choose_title' => 'Why Choose CRI Travels?',
+        'why_choose_items' => [
+            'Available 24/7 across Tamil Nadu',
+            'Sanitized, safe & reliable vehicles',
+            'Professional, local drivers',
+            'Easy booking by phone or email'
+        ]
+    ],
+    'contact' => [
+        'heading' => 'Contact Us',
+        'intro_text' => 'Ready to book your ride or have a question? Reach out to us!',
+        'phone' => '+91 75581 98405',
+        'email' => 'critravels@gmail.com',
+        'address' => '4/75 Pudukkottai to ponnamiravathi Main Road,<br> panayapatti,Pudukkottai<br> Tamil Nadu,india<br>622402'
+    ]
+];
+
+// Helper function to load content
+function get_content($settings_file, $default_content) {
+    if (!file_exists($settings_file)) return $default_content;
+    $content = json_decode(file_get_contents($settings_file), true);
+    if (!is_array($content)) return $default_content;
+    // Merge with defaults to ensure all fields exist
+    return array_merge($default_content, $content);
+}
+
+// Load content for use in pages
+$content = get_content($settings_file, $default_content);
+?>
+

@@ -1,0 +1,3 @@
+# Enable PHP processing in HTML files
+AddType application/x-httpd-php .html .htm
+
